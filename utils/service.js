@@ -3,20 +3,20 @@
 export const fetchCountries = async () => {
   try {
     const { data } = await useFetch("/api/countries");
-    return data.value; // Return the countries array
+    return data.value;
   } catch (error) {
     console.error("Error fetching countries:", error);
-    return []; // Return an empty array on error
+    return []; 
   }
 };
 
 export const fetchCountryDetails = async (countryName) => {
   try {
     const { data } = await useFetch(`/api/country?name=${countryName}`);
-    return data.value; // Return the country details
+    return data.value; 
   } catch (error) {
     console.error("Error fetching country details:", error);
-    return null; // Return null on error
+    return null; 
   }
 };
 
@@ -24,12 +24,12 @@ export const addCountry = async (countryData) => {
   try {
     const { data } = await useFetch("/api/countries", {
       method: "POST",
-      body: countryData, // Send the body as a normal object
+      body: countryData, 
       headers: {
         "Content-Type": "application/json",
       },
     });
-    return data.value; // Return the newly added country
+    return data.value; 
   } catch (error) {
     console.error("Failed to add country:", error);
     throw new Error("Failed to add country: " + error.message);

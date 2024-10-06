@@ -1,19 +1,18 @@
 import { readFileSync, writeFileSync } from "fs";
 import { join } from "path";
-import { readBody } from "h3"; // Import readBody if necessary
+import { readBody } from "h3";
 
 const dataFilePath = join(process.cwd(), "data.json");
 
-// Helper function to read data from JSON file
 const readData = () => {
   const data = readFileSync(dataFilePath);
-  return JSON.parse(data).countries; // Access the countries array
+  return JSON.parse(data).countries;
 };
 
 // Helper function to write data to JSON file
 const writeData = (countries) => {
   const currentData = JSON.parse(readFileSync(dataFilePath));
-  currentData.countries = countries; // Update the countries array
+  currentData.countries = countries;
   writeFileSync(dataFilePath, JSON.stringify(currentData, null, 2));
 };
 
@@ -21,15 +20,14 @@ export default defineEventHandler(async (event) => {
   if (event.node.req.method === "GET") {
     const countries = readData();
     return countries.map((country) => ({
-      id: country.id, // Use the existing id
+      id: country.id,
       name: country.name,
-      image: country.image, // Use the correct property
+      image: country.image,
     }));
   } else if (event.node.req.method === "POST") {
-    const body = await readBody(event); // Use readBody here
-    console.log("Received body:", body); // Log the entire body for debugging
+    const body = await readBody(event);
+    console.log("Received body:", body);
 
-    // Ensure body contains the expected fields
     if (!body.name || !body.continent || !body.rank) {
       throw createError({
         statusCode: 400,
