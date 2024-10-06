@@ -47,20 +47,6 @@
       "continent": "Asia",
       "flag": "images/india.png",
       "rank": 1
-    },
-    {
-      "id": "1728236413189",
-      "name": "check",
-      "continent": "check-c",
-      "rank": 666,
-      "flag": "images/no-image.webp"
-    },
-    {
-      "id": "1728237860617",
-      "name": "test",
-      "continent": "check",
-      "rank": 44,
-      "flag": "images/no-image.webp"
     }
   ]
 }
